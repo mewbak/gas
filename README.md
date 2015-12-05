@@ -14,3 +14,7 @@ gas object some_function
 ```
 
 where object is an executable, an object file (`*.o`), or a static or shared library.
+
+## License
+
+gas is released under the GNU General Public License version 3.0. As a special exception to the GPLv3, you may use the parts of gas output copied from gas source without restriction. Use of gas makes no requirements about the license of generated code.
