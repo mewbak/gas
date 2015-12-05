@@ -169,7 +169,10 @@ func (p *Program) transform(i *Inst) error {
 		p.labels[addr] = struct{}{}
 		i.goAsm = op + " _L" + addr
 	} else {
-		asm := op + " " + string(buf)
+		asm := op
+		if len(buf) > 0 {
+			asm += " " + string(buf)
+		}
 		if ok := tryCompile(asm); !ok {
 			return nil
 		}
