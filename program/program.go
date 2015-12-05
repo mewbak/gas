@@ -29,10 +29,9 @@ type Program struct {
 
 // New returns a new Program.
 func New() *Program {
-	p := Program{
+	return &Program{
 		labels: make(map[string]struct{}),
 	}
-	return &p
 }
 
 // AddInst adds an instruction to the program.
