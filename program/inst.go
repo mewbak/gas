@@ -47,6 +47,7 @@ var instructions = map[string]instInfo{
 	"movdqa": {"MOVOA", false, false},
 	"movdqu": {"MOVOU", false, false},
 	"nop":    {"", false, false},
+	"not":    {"", true, false},
 	"or":     {"", true, false},
 	"pop":    {"", true, false},
 	"push":   {"", true, false},
