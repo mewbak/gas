@@ -24,6 +24,8 @@ import (
 	"regexp"
 	"strings"
 
+	"github.com/klauspost/asmfmt"
+
 	"github.com/opennota/gas/program"
 )
 
@@ -91,14 +93,23 @@ func main() {
 		}
 	}
 
-	fmt.Printf("TEXT ·%s(SB),0,$0\n", functionName)
+	var buf bytes.Buffer
+	fmt.Fprintf(&buf, "TEXT ·%s(SB),0,$0\n", functionName)
 	for _, inst := range prog.Instrs() {
 		if label := prog.Label(inst); label != "" {
-			fmt.Printf("%s:\n", label)
+			fmt.Fprintf(&buf, "%s:\n", label)
 		}
 		if comment := inst.Comment(); comment != "" {
-			fmt.Printf("\t// %s\n", comment)
+			fmt.Fprintf(&buf, "\t// %s\n", comment)
 		}
-		fmt.Printf("\t%s\n", inst.String())
+		fmt.Fprintf(&buf, "\t%s\n", inst.String())
+	}
+
+	formatted, err := asmfmt.Format(&buf)
+	if err != nil {
+		log.Println("formatting error:", err)
+		fmt.Print(buf.String())
+	} else {
+		fmt.Print(string(formatted))
 	}
 }
