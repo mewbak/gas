@@ -3,11 +3,11 @@ gas [![License](http://img.shields.io/:license-gpl3-blue.svg)](http://www.gnu.or
 
 A tool for extracting functions from object files and transforming them into Go assembly.
 
-## Installation
+## Install
 
-    go get github.com/opennota/gas
+    go get -u github.com/opennota/gas
 
-## Usage
+## Use
 
 ```
 gas object some_function
